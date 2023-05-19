@@ -11,13 +11,16 @@ Location in GUI:
 ## Examples
 
 ```hcl
-module "aci_scaffolding" {
-  source  = "netascode/scaffolding/aci"
-  version = ">= 0.0.1"
+module "aci_bfd_multihop_node_policy" {
+  source  = "netascode/bfd-multihop-node-policy/aci"
+  version = ">= 0.1.0"
 
-  name        = "ABC"
-  alias       = "ABC-ALIAS"
-  description = "My Description"
+  tenant               = "ABC"
+  name                 = "BFD-MHOP"
+  description          = "My Description"
+  detection_multiplier = 10
+  min_rx_interval      = 100
+  min_tx_interval      = 100
 }
 ```
 
@@ -38,20 +41,23 @@ module "aci_scaffolding" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_name"></a> [name](#input\_name) | Tenant name. | `string` | n/a | yes |
-| <a name="input_alias"></a> [alias](#input\_alias) | Tenant alias. | `string` | `""` | no |
-| <a name="input_description"></a> [description](#input\_description) | Tenant description. | `string` | `""` | no |
+| <a name="input_tenant"></a> [tenant](#input\_tenant) | Tenant name. | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | BFD Multihop Node policy name. | `string` | n/a | yes |
+| <a name="input_description"></a> [description](#input\_description) | Description. | `string` | `""` | no |
+| <a name="input_detection_multiplier"></a> [detection\_multiplier](#input\_detection\_multiplier) | Detection multiplier. Minimum value: 1. Maximum value: 50. | `number` | `3` | no |
+| <a name="input_min_rx_interval"></a> [min\_rx\_interval](#input\_min\_rx\_interval) | Min RX interval. Minimum value: 50. Maximum value: 999. | `number` | `50` | no |
+| <a name="input_min_tx_interval"></a> [min\_tx\_interval](#input\_min\_tx\_interval) | Min TX interval. Minimum value: 50. Maximum value: 999. | `number` | `50` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_dn"></a> [dn](#output\_dn) | Distinguished name of `fvTenant` object. |
-| <a name="output_name"></a> [name](#output\_name) | Tenant name. |
+| <a name="output_dn"></a> [dn](#output\_dn) | Distinguished name of `bfdMhNodePol` object. |
+| <a name="output_name"></a> [name](#output\_name) | BFD Multihop policy name. |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aci_rest_managed.fvTenant](https://registry.terraform.io/providers/CiscoDevNet/aci/latest/docs/resources/rest_managed) | resource |
+| [aci_rest_managed.bfdMhNodePol](https://registry.terraform.io/providers/CiscoDevNet/aci/latest/docs/resources/rest_managed) | resource |
 <!-- END_TF_DOCS -->

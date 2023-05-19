@@ -13,38 +13,59 @@ terraform {
   }
 }
 
+resource "aci_rest_managed" "fvTenant" {
+  dn         = "uni/tn-TF"
+  class_name = "fvTenant"
+}
+
 module "main" {
   source = "../.."
 
-  name        = "ABC"
-  alias       = "ALIAS"
-  description = "DESCR"
+  tenant               = aci_rest_managed.fvTenant.content.name
+  name                 = "BFD-MHOP"
+  description          = "My Description"
+  detection_multiplier = 10
+  min_rx_interval      = 100
+  min_tx_interval      = 100
 }
 
-data "aci_rest_managed" "fvTenant" {
-  dn = "uni/tn-ABC"
+
+data "aci_rest_managed" "bfdMhNodePol" {
+  dn = "uni/tn-${aci_rest_managed.fvTenant.content.name}/bfdMhNodePol-${module.main.name}"
 
   depends_on = [module.main]
 }
 
-resource "test_assertions" "fvTenant" {
-  component = "fvTenant"
+resource "test_assertions" "bfdMhNodePol" {
+  component = "bfdMhNodePol"
 
   equal "name" {
     description = "name"
-    got         = data.aci_rest_managed.fvTenant.content.name
-    want        = "ABC"
-  }
-
-  equal "nameAlias" {
-    description = "nameAlias"
-    got         = data.aci_rest_managed.fvTenant.content.nameAlias
-    want        = "ALIAS"
+    got         = data.aci_rest_managed.bfdMhNodePol.content.name
+    want        = "BFD-MHOP"
   }
 
   equal "descr" {
     description = "descr"
-    got         = data.aci_rest_managed.fvTenant.content.descr
-    want        = "DESCR"
+    got         = data.aci_rest_managed.bfdMhNodePol.content.descr
+    want        = "My Description"
+  }
+
+  equal "detectMult" {
+    description = "detectMult"
+    got         = data.aci_rest_managed.bfdMhNodePol.content.detectMult
+    want        = "10"
+  }
+
+  equal "minRxIntvl" {
+    description = "minRxIntvl"
+    got         = data.aci_rest_managed.bfdMhNodePol.content.minRxIntvl
+    want        = "100"
+  }
+
+  equal "minTxIntvl" {
+    description = "minTxIntvl"
+    got         = data.aci_rest_managed.bfdMhNodePol.content.minTxIntvl
+    want        = "100"
   }
 }
