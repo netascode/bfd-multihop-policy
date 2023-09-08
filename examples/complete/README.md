@@ -1,5 +1,5 @@
 <!-- BEGIN_TF_DOCS -->
-# Scaffolding Example
+# BFD Multihop Node Policy Example
 
 To run this example you need to execute:
 

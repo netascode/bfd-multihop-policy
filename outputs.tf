@@ -5,5 +5,5 @@ output "dn" {
 
 output "name" {
   value       = aci_rest_managed.bfdMhNodePol.content.name
-  description = "BFD Multihop policy name."
+  description = "BFD Multihop node policy name."
 }

@@ -42,21 +42,21 @@ variable "detection_multiplier" {
 variable "min_rx_interval" {
   description = "Min RX interval. Minimum value: 50. Maximum value: 999."
   type        = number
-  default     = 50
+  default     = 250
 
   validation {
-    condition     = var.min_rx_interval >= 50 && var.min_rx_interval <= 999
-    error_message = "Minimum value: 50. Maximum value: 999."
+    condition     = var.min_rx_interval >= 250 && var.min_rx_interval <= 999
+    error_message = "Minimum value: 250. Maximum value: 999."
   }
 }
 
 variable "min_tx_interval" {
   description = "Min TX interval. Minimum value: 50. Maximum value: 999."
   type        = number
-  default     = 50
+  default     = 250
 
   validation {
-    condition     = var.min_tx_interval >= 50 && var.min_tx_interval <= 999
-    error_message = "Minimum value: 50. Maximum value: 999."
+    condition     = var.min_tx_interval >= 250 && var.min_tx_interval <= 999
+    error_message = "Minimum value: 250. Maximum value: 999."
   }
 }

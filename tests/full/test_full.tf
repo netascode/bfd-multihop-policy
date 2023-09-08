@@ -25,8 +25,8 @@ module "main" {
   name                 = "BFD-MHOP"
   description          = "My Description"
   detection_multiplier = 10
-  min_rx_interval      = 100
-  min_tx_interval      = 100
+  min_rx_interval      = 300
+  min_tx_interval      = 300
 }
 
 
@@ -60,12 +60,12 @@ resource "test_assertions" "bfdMhNodePol" {
   equal "minRxIntvl" {
     description = "minRxIntvl"
     got         = data.aci_rest_managed.bfdMhNodePol.content.minRxIntvl
-    want        = "100"
+    want        = "300"
   }
 
   equal "minTxIntvl" {
     description = "minTxIntvl"
     got         = data.aci_rest_managed.bfdMhNodePol.content.minTxIntvl
-    want        = "100"
+    want        = "300"
   }
 }

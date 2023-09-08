@@ -1,12 +1,12 @@
 <!-- BEGIN_TF_DOCS -->
-[![Tests](https://github.com/netascode/terraform-aci-scaffolding/actions/workflows/test.yml/badge.svg)](https://github.com/netascode/terraform-aci-scaffolding/actions/workflows/test.yml)
+[![Tests](https://github.com/netascode/terraform-aci-bfd-multihop-node-policy/actions/workflows/test.yml/badge.svg)](https://github.com/netascode/terraform-aci-bfd-multihop-node-policy/actions/workflows/test.yml)
 
-# Terraform ACI Scaffolding Module
+# Terraform ACI BFD Multihop Node Policy Module
 
 Description
 
 Location in GUI:
-`Tenants` » `XXX`
+`Tenants` » `XXX` » `Policies` » `Protocol` » `BFD Multihop` » `Node Policies`
 
 ## Examples
 
@@ -45,15 +45,15 @@ module "aci_bfd_multihop_node_policy" {
 | <a name="input_name"></a> [name](#input\_name) | BFD Multihop Node policy name. | `string` | n/a | yes |
 | <a name="input_description"></a> [description](#input\_description) | Description. | `string` | `""` | no |
 | <a name="input_detection_multiplier"></a> [detection\_multiplier](#input\_detection\_multiplier) | Detection multiplier. Minimum value: 1. Maximum value: 50. | `number` | `3` | no |
-| <a name="input_min_rx_interval"></a> [min\_rx\_interval](#input\_min\_rx\_interval) | Min RX interval. Minimum value: 50. Maximum value: 999. | `number` | `50` | no |
-| <a name="input_min_tx_interval"></a> [min\_tx\_interval](#input\_min\_tx\_interval) | Min TX interval. Minimum value: 50. Maximum value: 999. | `number` | `50` | no |
+| <a name="input_min_rx_interval"></a> [min\_rx\_interval](#input\_min\_rx\_interval) | Min RX interval. Minimum value: 50. Maximum value: 999. | `number` | `250` | no |
+| <a name="input_min_tx_interval"></a> [min\_tx\_interval](#input\_min\_tx\_interval) | Min TX interval. Minimum value: 50. Maximum value: 999. | `number` | `250` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_dn"></a> [dn](#output\_dn) | Distinguished name of `bfdMhNodePol` object. |
-| <a name="output_name"></a> [name](#output\_name) | BFD Multihop policy name. |
+| <a name="output_name"></a> [name](#output\_name) | BFD Multihop node policy name. |
 
 ## Resources
 
